@@ -50,7 +50,7 @@ export default function Home() {
       <section className="flex flex-wrap items-center justify-center gap-4">
         {categories.map((category) => (
           <div key={category} className="flex flex-col ">
-            <h3 className="self-start m-2 ml-4 text-xl font-bold text-white uppercase">
+            <h3 className="self-start ml-4 text-xl font-bold text-white uppercase">
               🌟 {category}
             </h3>
             <div className="flex flex-wrap items-center justify-center">
@@ -73,7 +73,7 @@ export default function Home() {
         <h3 className="text-xl font-bold text-white uppercase m-">
           Departments
         </h3>
-        <div className="flex flex-wrap items-center justify-center gap-2 p-2 m-2 cursor-pointer">
+        <div className="flex flex-wrap items-center justify-center gap-2 p-2">
           {categories.map((category) => {
             // get the first product of witch category
             const departments = products.filter(

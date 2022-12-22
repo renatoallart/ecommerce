@@ -1,9 +1,11 @@
+import { channel } from "diagnostics_channel";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { ReactNode } from "react";
 import { IProduct } from "../../pages";
 
 interface IProductCardProps extends IProduct {
+  children?: ReactNode;
   isLinkToProduct?: boolean;
 }
 
@@ -15,6 +17,7 @@ export default function ProductCard({
   thumbnail,
   category,
   isLinkToProduct,
+  children,
 }: IProductCardProps) {
   const router = useRouter();
   const handleClick = (id: number) => {
@@ -29,10 +32,12 @@ export default function ProductCard({
   };
   return (
     <div
-      className="flex flex-col gap-4 p-2 m-4 text-white rounded-md cursor-pointer h-52 w-44 bg-slate-500"
+      className="flex flex-col gap-4 p-2 m-4 text-white rounded-md cursor-pointer h-56 w-44 bg-slate-500"
       onClick={() => (isLinkToProduct ? router.push(`/product/${id}`) : null)}
     >
-      <h2 className="overflow-hidden text-center text-ellipsis">{title}</h2>
+      <h2 className="text-center overflow-hidden whitespace-nowrap text-ellipsis">
+        {title}
+      </h2>
       <div className="self-center">
         <Image
           priority
@@ -47,6 +52,7 @@ export default function ProductCard({
         <p>${price},00</p>
         <p className="text-white">🌟{rating}</p>
       </div>
+      {/* {children ? <div>{children}</div> : null} */}
     </div>
   );
 }

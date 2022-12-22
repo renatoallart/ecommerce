@@ -19,20 +19,28 @@ export default function Product() {
   );
   const addProduct = useShopCartStore((state) => state.addProduct);
 
-  function handleAddProduct(product: IProduct) {
+  function handleAddProduct({
+    id,
+    brand,
+    category,
+    price,
+    rating,
+    stock,
+    thumbnail,
+    title,
+    description,
+  }: IProduct) {
     addProduct({
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      rating: product.rating,
-      thumbnail: product.thumbnail,
-      category: product.category,
-      amount: 1,
-      brand: product.brand,
-      description: product.description,
-      images: product.images,
-      discountPercentage: product.discountPercentage,
-      stock: product.stock,
+      id,
+      title,
+      price,
+      rating,
+      thumbnail,
+      category,
+      quantity: 1,
+      brand,
+      description,
+      stock,
     });
   }
   if (isLoading) {
@@ -69,8 +77,7 @@ export default function Product() {
               className="w-[400px] h-60"
               src={image}
               alt={product.title}
-              width={500}
-              height={220}
+              fill
             />
           </Carousel.Slide>
         ))}
