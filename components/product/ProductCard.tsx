@@ -1,4 +1,3 @@
-import { channel } from "diagnostics_channel";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
@@ -21,22 +20,22 @@ export default function ProductCard({
 }: IProductCardProps) {
   const router = useRouter();
   const handleClick = (id: number) => {
-    // router.push(
-    //   {
-    //     pathname: "/product/[product]",
-    //     query: { product: id },
-    //   },
-    //   `/product/${id}?category=${category}`,
-    //   { shallow: true }
-    // );
+    router.push(
+      {
+        pathname: "/product/[product]",
+        query: { product: id },
+      },
+      `/product/${id}?category=${category}`,
+      { shallow: true }
+    );
   };
   return (
     <div
-      className="flex flex-col gap-4 p-2 m-4 text-white rounded-md cursor-pointer h-56 w-44 bg-slate-500"
-      onClick={() => (isLinkToProduct ? router.push(`/product/${id}`) : null)}
+      className="flex flex-col h-56 gap-4 p-2 m-4 text-white rounded-md cursor-pointer w-44 bg-slate-500"
+      onClick={() => (isLinkToProduct ? handleClick(id) : null)}
     >
-      <h2 className="text-center overflow-hidden whitespace-nowrap text-ellipsis">
-        {title}
+      <h2 className="overflow-hidden text-center whitespace-nowrap text-ellipsis">
+        {title}vmweopvmowepmvewopvmowepmvopwe
       </h2>
       <div className="self-center">
         <Image

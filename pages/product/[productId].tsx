@@ -19,29 +19,14 @@ export default function Product() {
   );
   const addProduct = useShopCartStore((state) => state.addProduct);
 
-  function handleAddProduct({
-    id,
-    brand,
-    category,
-    price,
-    rating,
-    stock,
-    thumbnail,
-    title,
-    description,
-  }: IProduct) {
-    addProduct({
-      id,
-      title,
-      price,
-      rating,
-      thumbnail,
-      category,
-      quantity: 1,
-      brand,
-      description,
-      stock,
-    });
+  function handleAddProduct(product: IProduct, productId: number) {
+    addProduct(
+      {
+        ...product,
+        quantity: 1,
+      },
+      productId
+    );
   }
   if (isLoading) {
     return <div>loading...</div>;
@@ -49,7 +34,7 @@ export default function Product() {
   if (!product) return <Error404 />;
 
   return (
-    <section>
+    <section className="">
       <h1 className="text-white ">{product.title}</h1>
       <Carousel
         sx={{ maxWidth: 400 }}
@@ -84,7 +69,7 @@ export default function Product() {
       </Carousel>
       <p>{product.description}</p>
       <button
-        onClick={() => handleAddProduct(product)}
+        onClick={() => handleAddProduct(product, Number(productId))}
         className="font-bold text-white "
       >
         Add to Cart

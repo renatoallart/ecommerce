@@ -11,7 +11,7 @@ export default function ShopCart() {
   );
   if (cart.length === 0) return <Error404 />;
   return (
-    <section className="flex min-h-screen">
+    <section className="flex justify-center p-2 m-4 gap-7 ">
       <ShopCartList />
       <CartSummary />
     </section>

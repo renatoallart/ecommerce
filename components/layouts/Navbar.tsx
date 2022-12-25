@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import { ShoppingCartSimple, User } from "phosphor-react";
+import Search from "./Search";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -46,6 +47,7 @@ export default function Navbar() {
           </li>
         )}
       </ul>
+      <Search />
     </nav>
   );
 }

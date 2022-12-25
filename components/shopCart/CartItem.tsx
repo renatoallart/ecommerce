@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface IShopCartItemProps {
   id: number;
@@ -23,33 +24,58 @@ export function ShopCartItem({
   decreaseQuantityByOne,
   removeProduct,
 }: IShopCartItemProps) {
-  console.log("quantity => ", quantity);
+  const router = useRouter();
+
+  const handleClick = (id: number) => {
+    router.push(
+      {
+        pathname: "/product/[product]",
+        query: { product: id },
+      },
+      `/product/${id}?category=${category}`,
+      { shallow: true }
+    );
+  };
+
   return (
-    <div className=" h-36 p-4 bg-slate-400 flex gap-4">
+    <div className="flex gap-4 p-4 rounded-md h-36 w-96 bg-slate-400">
       <Image
-        className=" h-24 w-24"
+        onClick={() => handleClick(id)}
+        className="self-center cursor-pointer h-28 w-22"
+        priority
         src={thumbnail}
         alt={title}
-        width={900}
+        width={500}
         height={60}
       />
-      <div className="">
-        <h2 className="text-xl text-white font-bold">{title}</h2>
-        <p className="text-xl text-white font-bold">{category}</p>
-        <div>
-          <p>R$ {price},00</p>
-          <div className="flex gap-2">
-            <button onClick={() => decreaseQuantityByOne(id)}> - </button>
+
+      <div className="flex flex-col text-white rounded-md h-min w-60 ">
+        <h2
+          onClick={() => handleClick(id)}
+          className="p-1 overflow-hidden text-center cursor-pointer whitespace-nowrap text-ellipsis hover:bg-slate-500 hover:rounded-md"
+        >
+          {title}cmewicmoiwemcioewmcioewmcioewmciowemciomewoicwe
+        </h2>
+        <p
+          onClick={() => router.push(`/product/category/${category}`)}
+          className="p-1 text-sm font-bold text-center text-white cursor-pointer w-min hover:bg-slate-500 hover:rounded-md"
+        >
+          {category}
+        </p>
+        <div className="flex items-center justify-between p-1">
+          <p className="text-sm text-white">R$ {price},00</p>
+          <div className="flex gap-2 mr-4">
+            <button onClick={() => decreaseQuantityByOne(id)}>-</button>
             <p>{quantity}</p>
-            <button onClick={() => increaseQuantityByOne(id)}> + </button>
-            <button
-              onClick={() => removeProduct(id)}
-              className=" p-[4px] cursor-pointer hover:bg-slate-600 hover:text-black transition-all block text-white font-bold text-center bg-slate-400  rounded-md "
-            >
-              Remove
-            </button>
+            <button onClick={() => increaseQuantityByOne(id)}>+</button>
           </div>
         </div>
+        <button
+          className="mr-4 text-center hover:bg-slate-500 hover:rounded-md"
+          onClick={() => removeProduct(id)}
+        >
+          remover
+        </button>
       </div>
     </div>
   );

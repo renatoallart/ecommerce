@@ -12,6 +12,8 @@ export function CartSummary() {
     (state: IUseShopCartStore) => state.cart
   );
 
+  // const cart = useShopCartStore((state: IUseShopCartStore) => state.cart)
+
   const cartTotal = useMemo(
     () =>
       cart.reduce(

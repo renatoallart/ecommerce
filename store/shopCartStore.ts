@@ -16,10 +16,11 @@ export interface IProduct {
 
 export interface IUseShopCartStore {
   cart: IProduct[];
-  addProduct(product: IProduct): void;
-  removeProduct(productId: number): void;
+  addProduct(product: IProduct, productId: number): void;
+  removeProductById(productId: number): void;
   decreaseQuantityByOne(productId: number): void;
   increaseQuantityByOne(productId: number): void;
+  removeAllProductsFromCart(): void;
 }
 
 export const useShopCartStore = create<
@@ -29,10 +30,14 @@ export const useShopCartStore = create<
   persist(
     (set, get) => ({
       cart: [],
-      addProduct: (product: IProduct) => {
+      addProduct: (product: IProduct, productId: number) => {
+        if (get().cart.find((product) => product.id === productId)) {
+          return console.log("product in list");
+        }
+
         set((state) => ({ cart: [product, ...state.cart] }));
       },
-      removeProduct: (productId: number) =>
+      removeProductById: (productId: number) =>
         set((state) => ({
           cart: state.cart.filter((product) => product.id !== productId),
         })),
@@ -58,6 +63,7 @@ export const useShopCartStore = create<
               : product
           ),
         })),
+      removeAllProductsFromCart: () => set((state) => ({ cart: [] })),
     }),
     {
       name: "cart",
