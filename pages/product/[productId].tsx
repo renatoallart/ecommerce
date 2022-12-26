@@ -19,21 +19,14 @@ export default function Product() {
   );
   const addProduct = useShopCartStore((state) => state.addProduct);
 
-  function handleAddProduct(product: IProduct) {
-    addProduct({
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      rating: product.rating,
-      thumbnail: product.thumbnail,
-      category: product.category,
-      amount: 1,
-      brand: product.brand,
-      description: product.description,
-      images: product.images,
-      discountPercentage: product.discountPercentage,
-      stock: product.stock,
-    });
+  function handleAddProduct(product: IProduct, productId: number) {
+    addProduct(
+      {
+        ...product,
+        quantity: 1,
+      },
+      productId
+    );
   }
   if (isLoading) {
     return <div>loading...</div>;
@@ -41,7 +34,7 @@ export default function Product() {
   if (!product) return <Error404 />;
 
   return (
-    <section>
+    <section className="">
       <h1 className="text-white ">{product.title}</h1>
       <Carousel
         sx={{ maxWidth: 400 }}
@@ -69,15 +62,14 @@ export default function Product() {
               className="w-[400px] h-60"
               src={image}
               alt={product.title}
-              width={500}
-              height={220}
+              fill
             />
           </Carousel.Slide>
         ))}
       </Carousel>
       <p>{product.description}</p>
       <button
-        onClick={() => handleAddProduct(product)}
+        onClick={() => handleAddProduct(product, Number(productId))}
         className="font-bold text-white "
       >
         Add to Cart

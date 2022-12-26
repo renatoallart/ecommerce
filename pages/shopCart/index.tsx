@@ -1,22 +1,19 @@
-import ProductCard from "../../components/product/ProductCard";
-import { IProduct, useShopCartStore } from "../../store/shopCartStore";
+import { ShopCartList } from "../../components/shopCart/CartItemsList";
+import { CartSummary } from "../../components/shopCart/CartSummary";
 import { useStore } from "../../hooks/useStore";
-export default function ShopCart() {
-  const cartStore = useStore(useShopCartStore, (state: any) => state.cart);
+import { IUseShopCartStore, useShopCartStore } from "../../store/shopCartStore";
+import Error404 from "../404";
 
-  //   another way to use localStorage without custom hook
-  // const cart = useShopCartStore((state) => state.cart);
-  //   const [cartStore, setCartStore] = useState<IProduct[]>([]);
-  //   useEffect(() => {
-  //     setCartStore(cart);
-  //   }, [cart]);
+export default function ShopCart() {
+  const cart = useStore(
+    useShopCartStore,
+    (state: IUseShopCartStore) => state.cart
+  );
+  if (cart.length === 0) return <Error404 />;
   return (
-    <section>
-      <div className="min-h-screen">
-        {cartStore.map((product) => (
-          <ProductCard key={product.id} isLinkToProduct={false} {...product} />
-        ))}
-      </div>
+    <section className="flex justify-center p-2 m-4 gap-7 ">
+      <ShopCartList />
+      <CartSummary />
     </section>
   );
 }

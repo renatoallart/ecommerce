@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { ReactNode } from "react";
 import { IProduct } from "../../pages";
 
 interface IProductCardProps extends IProduct {
+  children?: ReactNode;
   isLinkToProduct?: boolean;
 }
 
@@ -15,24 +16,27 @@ export default function ProductCard({
   thumbnail,
   category,
   isLinkToProduct,
+  children,
 }: IProductCardProps) {
   const router = useRouter();
   const handleClick = (id: number) => {
-    // router.push(
-    //   {
-    //     pathname: "/product/[product]",
-    //     query: { product: id },
-    //   },
-    //   `/product/${id}?category=${category}`,
-    //   { shallow: true }
-    // );
+    router.push(
+      {
+        pathname: "/product/[product]",
+        query: { product: id },
+      },
+      `/product/${id}?category=${category}`,
+      { shallow: true }
+    );
   };
   return (
     <div
-      className="flex flex-col gap-4 p-2 m-4 text-white rounded-md cursor-pointer h-52 w-44 bg-slate-500"
-      onClick={() => (isLinkToProduct ? router.push(`/product/${id}`) : null)}
+      className="flex flex-col h-56 gap-4 p-2 m-4 text-white rounded-md cursor-pointer w-44 bg-slate-500"
+      onClick={() => (isLinkToProduct ? handleClick(id) : null)}
     >
-      <h2 className="overflow-hidden text-center text-ellipsis">{title}</h2>
+      <h2 className="overflow-hidden text-center whitespace-nowrap text-ellipsis">
+        {title}vmweopvmowepmvewopvmowepmvopwe
+      </h2>
       <div className="self-center">
         <Image
           priority
@@ -47,6 +51,7 @@ export default function ProductCard({
         <p>${price},00</p>
         <p className="text-white">🌟{rating}</p>
       </div>
+      {/* {children ? <div>{children}</div> : null} */}
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { IProduct } from "../store/shopCartStore";
 
+// solution to access localStorage in Client-only components
+// using zustand
+
 export function useStore(store: any, callback: any) {
   const result = store(callback);
   const [state, setState] = useState<IProduct[]>([]);
