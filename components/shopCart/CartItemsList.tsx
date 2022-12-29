@@ -1,13 +1,9 @@
-import ProductCard from "../product/ProductCard";
-import {
-  IProduct,
-  IUseShopCartStore,
-  useShopCartStore,
-} from "../../store/shopCartStore";
-import { useStore } from "../../hooks/useStore";
-import { ShopCartItem } from "./CartItem";
+import { IUseShopCartStore, useShopCartStore } from "../../store/shopCartStore";
+import { useLocalStore } from "../../hooks/useLocalStore";
+import { CartItem } from "./CartItem";
+
 export function ShopCartList() {
-  // in client-only components nextjs can't access localstorage
+  // in client-only components nextjs can't access localStorage
 
   //   another way to use localStorage without custom hook
   // const cart = useShopCartStore((state) => state.cart);
@@ -15,7 +11,7 @@ export function ShopCartList() {
   //   useEffect(() => {
   //     setCartStore(cart);
   //   }, [cart]);
-  const cartStore = useStore(
+  const cartStore = useLocalStore(
     useShopCartStore,
     (state: IUseShopCartStore) => state.cart
   );
@@ -30,7 +26,7 @@ export function ShopCartList() {
     (state) => state.removeAllProductsFromCart
   );
   const removeProduct = useShopCartStore((state) => state.removeProductById);
-  console.log(crypto.randomUUID());
+  // console.log(crypto.randomUUID());
   return (
     <section className="flex flex-col min-h-full gap-4">
       <div className="rounded-md bg-slate-400">
@@ -44,7 +40,7 @@ export function ShopCartList() {
       </div>
       <div className="flex flex-col gap-4 ">
         {cartStore.map((product) => (
-          <ShopCartItem
+          <CartItem
             key={product.id}
             removeProduct={removeProduct}
             decreaseQuantityByOne={decreaseQuantityByOne}

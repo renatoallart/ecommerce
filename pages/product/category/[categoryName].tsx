@@ -1,9 +1,8 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import React from "react";
-import { IProduct } from "../..";
-import ProductCard from "../../../components/product/ProductCard";
+import { ProductCard } from "../../../components/product/ProductCard";
+import { IProduct } from "../../../interfaces/Product";
 import { getProductByCategory } from "../../../lib/fetches/products";
 
 export default function Category({ products }: { products: IProduct[] }) {

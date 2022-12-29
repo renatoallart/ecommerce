@@ -1,22 +1,10 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
-
-export interface IProduct {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  quantity: number;
-}
+import { IProductCart } from "../interfaces/productsCart";
 
 export interface IUseShopCartStore {
-  cart: IProduct[];
-  addProduct(product: IProduct, productId: number): void;
+  cart: IProductCart[];
+  addProduct(product: IProductCart, productId: number): void;
   removeProductById(productId: number): void;
   decreaseQuantityByOne(productId: number): void;
   increaseQuantityByOne(productId: number): void;
@@ -30,7 +18,7 @@ export const useShopCartStore = create<
   persist(
     (set, get) => ({
       cart: [],
-      addProduct: (product: IProduct, productId: number) => {
+      addProduct: (product: IProductCart, productId: number) => {
         if (get().cart.find((product) => product.id === productId)) {
           return console.log("product in list");
         }
@@ -63,11 +51,11 @@ export const useShopCartStore = create<
               : product
           ),
         })),
-      removeAllProductsFromCart: () => set((state) => ({ cart: [] })),
+      removeAllProductsFromCart: () => set(() => ({ cart: [] })),
     }),
     {
       name: "cart",
-      getStorage: () => sessionStorage,
+      getStorage: () => localStorage,
     }
   )
 );

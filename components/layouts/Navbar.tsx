@@ -1,53 +1,81 @@
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { ShoppingCartSimple, User } from "phosphor-react";
+import { Gear, List, ShoppingCartSimple, SignOut, User } from "phosphor-react";
 import Search from "./Search";
+import { Menu } from "@mantine/core";
 
-export default function Navbar() {
+interface INavbarProps {
+  setIsShowing: (show: boolean) => void;
+}
+
+export default function Navbar({ setIsShowing }: INavbarProps) {
   const { data: session } = useSession();
 
   const avatar = session?.user?.image;
 
+  // don't forget to fix the menu alignment between items
   return (
-    <nav className="flex items-center justify-center h-16 bg-gray-700">
-      <ul className="flex gap-6 text-xl font-bold text-white">
-        <li className="hover:underline hover:decoration-white ">
-          <Link href="/">Products</Link>
-        </li>
-        <li className="hover:underline hover:decoration-white ">
-          <Link href="/shopCart">
-            <ShoppingCartSimple size={40} color="white" />
-          </Link>
-        </li>
+    <>
+      <nav className="sticky top-0 bg-gray-700 h-11 ">
+        <ul className="flex items-center p-2 text-xl font-bold text-white justify-evenly">
+          <li className="hidden sm:block">
+            <h1>
+              <Link href="/" className="cursor-pointer hover:underline">
+                My Commerce
+              </Link>{" "}
+            </h1>
+          </li>
+          <li className="sm:hidden">
+            <List size={30} color="white" onClick={() => setIsShowing(true)} />
+          </li>
+          <li className="hidden cursor-pointer sm:block hover:underline">
+            Categories
+          </li>
 
-        {session ? (
-          <li className="hover:underline hover:decoration-white">
-            <Link
-              href="/api/auth/signout"
-              onClick={(event) => {
-                event.preventDefault();
-                signOut({ callbackUrl: "/" });
-              }}
-            >
-              <Image
-                className="rounded-full"
-                src={String(avatar)}
-                width="40"
-                height="40"
-                alt={""}
-              />
+          <div className="flex items-center w-40 justify-evenly">
+            <Link href="/shopCart" className="hidden sm:block">
+              <ShoppingCartSimple size={30} color="white " />
             </Link>
-          </li>
-        ) : (
-          <li className="hover:underline hover:decoration-white">
-            <Link href="/login">Login</Link>
-          </li>
-        )}
-      </ul>
-      <Search />
-    </nav>
+            {session ? (
+              <Menu shadow="md" width={200}>
+                <Menu.Target>
+                  <Image
+                    className="rounded-full"
+                    src={String(avatar)}
+                    width="40"
+                    height="40"
+                    alt={""}
+                  />
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Label>User</Menu.Label>
+                  <Menu.Item icon={<Gear size={12} color="gray" />}>
+                    Settings
+                  </Menu.Item>
+                  <Menu.Item
+                    icon={<SignOut size={16} color="red" />}
+                    onClick={(event) => {
+                      console.log("clicked => signout");
+                      // event.preventDefault();
+                      signOut({ callbackUrl: "/" });
+                    }}
+                  >
+                    Logout
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            ) : (
+              <Link href="/login">
+                <User size={30} color="white" />
+              </Link>
+            )}
+          </div>
+        </ul>
+        {/* <Search /> */}
+      </nav>
+    </>
   );
 }
