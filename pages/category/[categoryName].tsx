@@ -1,9 +1,9 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import { ProductCard } from "../../../components/product/ProductCard";
-import { IProduct } from "../../../interfaces/Product";
-import { getProductByCategory } from "../../../lib/fetches/products";
+import { ProductCard } from "../../components/product/ProductCard";
+import { IProduct } from "../../interfaces/Product";
+import { getProductByCategory } from "../../lib/fetches/products";
 
 export default function Category({ products }: { products: IProduct[] }) {
   console.log(products);
@@ -14,7 +14,7 @@ export default function Category({ products }: { products: IProduct[] }) {
       <h3 className="m-6 text-xl font-bold text-white uppercase">
         🌟 {categoryName}
       </h3>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap items-center justify-center">
         {products
           .filter((product) => product.category === categoryName)
           .map((product) => (

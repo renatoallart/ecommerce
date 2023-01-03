@@ -39,34 +39,37 @@ export default function Product() {
 
   return (
     <>
-      <section>
-        <h1 className="text-white ">{product.title}</h1>
+      <section className="p-2 m-2">
+        <h2 className="text-xl font-bold text-white">{product.title}</h2>
         <ImageCarousel images={product.images} title={product.title} />
-        <p>{product.description}</p>
         <button
           onClick={() => handleAddProduct(product, Number(productId))}
-          className="font-bold text-white "
+          className="m-auto font-bold text-white w-60 h-11 bg-slate-400 hover:text-green-600"
         >
           Add to Cart
         </button>
+        <div className="p-2 mt-4 bg-slate-400">
+          <h4 className="text-white ">Description</h4>
+          <p className="p-2 text-white">{product.description}</p>
+        </div>
       </section>
 
       {/* render Similar Products */}
-      <section>
+      {/* <section>
         {isLoadingProducts && !similarProducts ? (
           <div>loading...</div>
         ) : (
           <div>
-            <div className="flex justify-between m-4">
-              <h2 className="font-bold text-white ">Similar Products</h2>
-              <h2
+            <div className="flex m-4 justify-evenly">
+              <h3 className="font-bold text-white ">Similar Products</h3>
+              <h3
                 onClick={() => handleClick(product.category, router)}
                 className="font-bold text-white cursor-pointer hover:text-slate-500"
               >
                 See more...
-              </h2>
+              </h3>
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap items-center justify-center">
               {similarProducts ? (
                 <ProductByCategory
                   productList={similarProducts}
@@ -76,14 +79,10 @@ export default function Product() {
               ) : (
                 <Error404 />
               )}
-              {/* {similarProducts
-                ?.filter((similar) => similar.category === product?.category)
-                .map((similar) => <ProductCard key={similar.id} {...similar} />)
-                .slice(0, 4)} */}
             </div>
           </div>
         )}
-      </section>
+      </section> */}
     </>
   );
 }
