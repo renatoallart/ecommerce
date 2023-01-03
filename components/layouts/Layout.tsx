@@ -1,13 +1,12 @@
-import React, { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { Footer } from "./Footer";
 import Navbar from "./Navbar";
-import Search from "./Search";
-
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <main className="min-h-screen bg-[#121212] debug-screens">
+    <>
       <Navbar />
-      <Search />
-      {children}
-    </main>
+      <main className="p-4 debug-screens bg-[#121212]">{children}</main>
+      <Footer />
+    </>
   );
 }

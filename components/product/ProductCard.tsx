@@ -1,14 +1,13 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { ReactNode } from "react";
-import { IProduct } from "../../pages";
+import { IProduct } from "../../interfaces/Product";
+import { formatToCurrency } from "../../lib/utils/formatData";
 
 interface IProductCardProps extends IProduct {
-  children?: ReactNode;
   isLinkToProduct?: boolean;
 }
 
-export default function ProductCard({
+export function ProductCard({
   id,
   title,
   price,
@@ -16,7 +15,6 @@ export default function ProductCard({
   thumbnail,
   category,
   isLinkToProduct,
-  children,
 }: IProductCardProps) {
   const router = useRouter();
   const handleClick = (id: number) => {
@@ -29,13 +27,14 @@ export default function ProductCard({
       { shallow: true }
     );
   };
+
   return (
     <div
       className="flex flex-col h-56 gap-4 p-2 m-4 text-white rounded-md cursor-pointer w-44 bg-slate-500"
       onClick={() => (isLinkToProduct ? handleClick(id) : null)}
     >
       <h2 className="overflow-hidden text-center whitespace-nowrap text-ellipsis">
-        {title}vmweopvmowepmvewopvmowepmvopwe
+        {title}
       </h2>
       <div className="self-center">
         <Image
@@ -48,7 +47,7 @@ export default function ProductCard({
         />
       </div>
       <div className="flex justify-between ">
-        <p>${price},00</p>
+        <p>${formatToCurrency(price)}</p>
         <p className="text-white">🌟{rating}</p>
       </div>
       {/* {children ? <div>{children}</div> : null} */}

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { IProduct } from "../store/shopCartStore";
+import { IProductCart } from "../interfaces/productsCart";
 
 // solution to access localStorage in Client-only components
-// using zustand
+// using Zustand
 
-export function useStore(store: any, callback: any) {
+export function useLocalStore(store: any, callback: any): IProductCart[] {
   const result = store(callback);
-  const [state, setState] = useState<IProduct[]>([]);
+  const [state, setState] = useState<IProductCart[]>([]);
 
   useEffect(() => {
     setState(result);
