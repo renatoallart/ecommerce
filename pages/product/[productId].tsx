@@ -9,6 +9,9 @@ import { handleClick } from "../../lib/utils/redirectToCategory";
 import { ImageCarousel } from "../../components/product/ImageCarousel";
 import { IProduct } from "../../interfaces/Product";
 import Error404 from "../404";
+import { formatToCurrency } from "../../lib/utils/formatData";
+import { Carousel } from "@mantine/carousel";
+import { Loading } from "../../components/layouts/Loading";
 
 export default function Product() {
   const router = useRouter();
@@ -32,32 +35,43 @@ export default function Product() {
     IProduct[]
   >(["similarProducts"], getProducts);
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
+  if (isLoading) return <Loading />;
+
   if (!product) return <Error404 />;
 
   return (
     <>
-      <section className="p-2 m-2">
-        <h2 className="text-xl font-bold text-white">{product.title}</h2>
-        <ImageCarousel images={product.images} title={product.title} />
-        <button
-          onClick={() => handleAddProduct(product, Number(productId))}
-          className="m-auto font-bold text-white w-60 h-11 bg-slate-400 hover:text-green-600"
-        >
-          Add to Cart
-        </button>
-        <div className="p-2 mt-4 bg-slate-400">
+      <section className="flex flex-col items-center justify-center w-screen gap-4">
+        <div className="mt-4 md:gap-4 md:flex md:flex-row md:justify-center md:items-center">
+          <div>
+            <ImageCarousel images={product.images} title={product.title} />
+          </div>
+          <aside>
+            <div className=" p-2 w-[400px] bg-slate-400">
+              <p className="text-xl font-bold text-white">
+                Price: $ <span>{formatToCurrency(product.price)}</span>
+              </p>
+              <p>{product.description}</p>
+            </div>
+            <button
+              onClick={() => handleAddProduct(product, Number(productId))}
+              className="w-full mt-4 font-bold text-white h-11 bg-slate-400 hover:text-green-600"
+            >
+              Add to Cart
+            </button>
+          </aside>
+        </div>
+
+        {/* <div className="p-2 mt-4 bg-slate-400">
           <h4 className="text-white ">Description</h4>
           <p className="p-2 text-white">{product.description}</p>
-        </div>
+        </div> */}
       </section>
 
       {/* render Similar Products */}
-      {/* <section>
+      <section>
         {isLoadingProducts && !similarProducts ? (
-          <div>loading...</div>
+          <Loading />
         ) : (
           <div>
             <div className="flex m-4 justify-evenly">
@@ -82,7 +96,7 @@ export default function Product() {
             </div>
           </div>
         )}
-      </section> */}
+      </section>
     </>
   );
 }

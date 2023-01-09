@@ -39,7 +39,7 @@ export function CartItem({
   };
 
   return (
-    <div className="flex gap-4 p-4 rounded-md h-36 w-96 bg-slate-400">
+    <div className="flex gap-4 p-4 rounded-md h-36 w-[430px] md:w-[500px] bg-slate-400">
       <Image
         onClick={() => handleClick(id)}
         className="self-center rounded-md cursor-pointer h-28 w-22"
@@ -66,7 +66,7 @@ export function CartItem({
 
         {/* // increase and decrease quantity  */}
         <div className="flex items-center justify-between ">
-          <p className="text-[14px] text-white">${formatToCurrency(price)}</p>
+          <p className="text-white ">${formatToCurrency(price)}</p>
           <div className="flex items-center justify-center gap-2 ">
             <button
               className="w-6 h-6 text-center rounded-full hover:bg-red-500 hover:border hover:border-black"

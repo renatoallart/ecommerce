@@ -1,5 +1,6 @@
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Loading } from "../../components/layouts/Loading";
 import { AllCategories } from "../../components/product/AllCategories";
 import { IProduct } from "../../interfaces/Product";
 import { getProducts } from "../../lib/fetches/products";
@@ -9,8 +10,8 @@ export default function Category() {
     ["categories"],
     getProducts
   );
-  if (isLoading) return <div>loading</div>;
-  if (!products) return <div>Page not found</div>;
+  if (isLoading) return <Loading />;
+  if (!products) return <Loading />;
   return (
     <>
       {/* // render the first product of each category */}

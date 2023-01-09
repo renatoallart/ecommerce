@@ -8,7 +8,7 @@ export function Top5({ productList }: { productList: IProduct[] }) {
     .slice(0, 5);
   return (
     <section>
-      <h3 className="m-2 text-xl font-bold text-white uppercase">
+      <h3 className="p-2 text-xl font-bold text-white uppercase ">
         Top 5 Products
       </h3>
       <div className="flex flex-wrap items-center justify-center">

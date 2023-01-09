@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useLocalStore } from "../../hooks/useLocalStore";
 import { IProductCart } from "../../interfaces/productsCart";
+import { formatToCurrency } from "../../lib/utils/formatData";
 import { IUseShopCartStore, useShopCartStore } from "../../store/shopCartStore";
 
 export function CartSummary() {
@@ -11,19 +12,45 @@ export function CartSummary() {
 
   // const cart = useShopCartStore((state: IUseShopCartStore) => state.cart)
 
-  const cartTotal = useMemo(
-    () =>
+  const totalPrice = useMemo(() => {
+    return formatToCurrency(
       cart.reduce(
         (total: number, product: IProductCart) =>
           total + product.price * product.quantity,
+        0
+      )
+    );
+  }, [cart]);
+  const quantity = useMemo(
+    () =>
+      cart.reduce(
+        (totalQuantity: number, productQuantity: IProductCart) =>
+          totalQuantity + productQuantity.quantity,
         0
       ),
     [cart]
   );
   return (
-    <aside className="sticky p-4 rounded-md bg-slate-400 h-44 w-44 top-10">
-      <h3 className="font-bold text-white font-xl">Summary</h3>
-      {new Intl.NumberFormat("en-IN").format(cartTotal)},00
+    <aside className="h-48 w-[430px] md:sticky md:top-14  bg-slate-400 p-3 rounded-md">
+      <h3 className="text-2xl font-bold text-white">Summary</h3>
+      <div className="flex flex-col gap-2 mt-2 ">
+        <div className="flex items-baseline justify-evenly ">
+          <p className="text-sm text-white ">Subtotal</p>
+          <p className="text-white">${totalPrice}</p>
+        </div>
+
+        <div className="flex items-baseline justify-evenly ">
+          <p className="text-2xl text-white ">Total</p>
+          <p className="text-xl font-bold text-white">${totalPrice}</p>
+        </div>
+      </div>
+
+      <button
+        onClick={() => alert("Nice Buy")}
+        className="w-full h-12 mt-2 text-xl font-bold bg-green-500"
+      >
+        Checkout ( {quantity} )
+      </button>
     </aside>
   );
 }

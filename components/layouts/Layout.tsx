@@ -1,12 +1,18 @@
-import { ReactNode, useState } from "react";
+import Head from "next/head";
+import { ReactNode } from "react";
 import { Footer } from "./Footer";
-import Navbar from "./Navbar";
+import { Navbar } from "./Navbar";
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Navbar />
-      <main className="p-4 debug-screens bg-[#121212]">{children}</main>
-      <Footer />
+      <Head>
+        <title>My Commerce</title>
+      </Head>
+      <div className=" min-h-screen debug-screens grid grid-rows-layout bg-[#121212] ">
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </div>
     </>
   );
 }

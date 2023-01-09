@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { FormEvent, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 export default function Search() {
   const router = useRouter();

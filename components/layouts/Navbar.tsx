@@ -1,12 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
-import { Gear, List, ShoppingCartSimple, SignOut, User } from "phosphor-react";
-import Search from "./Search";
+import { Gear, ShoppingCartSimple, SignOut, User } from "phosphor-react";
 import { Menu } from "@mantine/core";
+import { IUseShopCartStore, useShopCartStore } from "../../store/shopCartStore";
+import { useLocalStore } from "../../hooks/useLocalStore";
 
-export default function Navbar() {
+export function Navbar() {
   const { data: session } = useSession();
+  const cart = useLocalStore(
+    useShopCartStore,
+    (state: IUseShopCartStore) => state.cart
+  );
 
   const avatar = session?.user?.image;
 
@@ -18,9 +23,9 @@ export default function Navbar() {
           <h1 className="hidden sm:grid sm:place-content-center">
             <Link
               href="/"
-              className="text-xl font-bold cursor-pointer hover:underline"
+              className="text-xl font-bold cursor-pointer font-rubik hover:underline"
             >
-              My Commerce
+              My E-Commerce
             </Link>
           </h1>
           <li className="text-xl font-bold cursor-pointer place-self-center sm:block hover:underline">
@@ -28,9 +33,18 @@ export default function Navbar() {
           </li>
           <div className="grid place-content-center">
             <div className="flex items-center w-32 justify-evenly">
-              <Link href="/shopCart" className="hidden sm:block ">
-                <ShoppingCartSimple size={30} color="white " />
-              </Link>
+              <div className="hidden md:flex ">
+                <Link href="/shopCart" className="hidden sm:block ">
+                  <ShoppingCartSimple size={30} color="white " />
+                </Link>
+                {cart.length > 0 ? (
+                  <p className="relative bg-orange-400 rounded-[50%] -top-1 right-1 font-bold h-4 w-4 text-center text-xs">
+                    {cart.length}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
 
               <div className="rounded-full cursor-pointer hover:shadow-md hover:shadow-white">
                 {session ? (

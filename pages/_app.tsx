@@ -22,16 +22,17 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const queryClient = useRef(new QueryClient());
 
-  if (Component.getLayout) {
-    return Component.getLayout(<Component {...pageProps} />);
-  }
   return (
     <SessionProvider session={pageProps.session}>
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          {Component.getLayout ? (
+            Component.getLayout(<Component {...pageProps} />)
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
         </Hydrate>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

@@ -1,4 +1,5 @@
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import { Loading } from "../components/layouts/Loading";
 import { AllCategories } from "../components/product/AllCategories";
 import { ProductList } from "../components/product/ProductList";
 import { Top5 } from "../components/product/Top5";
@@ -8,7 +9,7 @@ import { getProducts } from "../lib/fetches/products";
 export default function Home() {
   const { data: products } = useQuery<IProduct[]>(["products"], getProducts);
 
-  if (!products) return <div>loading</div>;
+  if (!products) return <Loading />;
 
   return (
     <>
