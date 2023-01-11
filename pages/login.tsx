@@ -9,7 +9,7 @@ export default function Login() {
         <div>
           <Link href="/">
             <h2 className="font-bold text-white cursor-pointer text-7xl">
-              <p className="text-center">My</p> <p>Commerce</p>
+              <p className="text-center">My</p> <p>E-Commerce</p>
             </h2>
           </Link>
         </div>

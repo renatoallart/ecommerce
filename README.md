@@ -14,24 +14,6 @@ create a simple E-commerce.
 
 Learn Next.js, Zustand, and Typescript.
 
-=======
-
-# E-commerce
-
-An application in Nextjs using Typescript to
-create a simple E-commerce.
-
-## Table of contentes
-
-- [Motivations](#motivations)
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Getting Started](#Gettingstarted)
-
-## Motivations
-
-Learn Next.js, Zustand, and Typescript.
-
 ## Technologies
 
 - [Nextjs](https://nextjs.org/)
@@ -43,15 +25,9 @@ Learn Next.js, Zustand, and Typescript.
 - [Maintine Components](https://mantine.dev/)
 - [Typescript](https://www.typescriptlang.org/)
 
-=======
-
 ## Getting Started
 
 Prerequisites
-
-Prerequisites
-
-=======
 
 - [nodejs](https://nodejs.org/en/)
 - [git](https://git-scm.com/)
@@ -66,8 +42,6 @@ Clone the project
 
 Go to the project directory
 
-<<<<<<< HEAD
-
 ```bash
   cd ecommerce
 ```
@@ -88,32 +62,8 @@ Start the application
   yarn dev
 ```
 
-## Authors
-
-- [@renatoallart](https://www.github.com/renatoallart)
-
-## License
-
-# [MIT](https://choosealicense.com/licenses/mit/)
-
 ```bash
   cd ecommerce
-```
-
-Install dependencies
-
-```bash
-  npm install
-  #or
-  yarn add
-```
-
-Start the application
-
-```bash
-  npm run dev
-  #or
-  yarn dev
 ```
 
 ## Authors
