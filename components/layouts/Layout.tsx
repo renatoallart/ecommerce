@@ -8,9 +8,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Head>
         <title>My Commerce</title>
       </Head>
-      <div className=" min-h-screen debug-screens grid grid-rows-layout bg-[#121212] ">
+      <div className=" min-h-screen debug-screens grid grid-rows-layout bg-[#121212] min-w-full ">
         <Navbar />
-        <main>{children}</main>
+        <main className="min-w-[90vw]">{children}</main>
         <Footer />
       </div>
     </>

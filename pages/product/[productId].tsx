@@ -41,7 +41,7 @@ export default function Product() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center w-screen gap-4">
+      <section className="flex flex-col items-center justify-center gap-4">
         <div className="mt-4 md:gap-4 md:flex md:flex-row md:justify-center md:items-center">
           <div>
             <ImageCarousel images={product.images} title={product.title} />
@@ -61,11 +61,6 @@ export default function Product() {
             </button>
           </aside>
         </div>
-
-        {/* <div className="p-2 mt-4 bg-slate-400">
-          <h4 className="text-white ">Description</h4>
-          <p className="p-2 text-white">{product.description}</p>
-        </div> */}
       </section>
 
       {/* render Similar Products */}
