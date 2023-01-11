@@ -4,7 +4,8 @@ import { authArray } from "../lib/utils/authArray";
 
 export default function Login() {
   return (
-    <section className="min-h-screen debug-screens bg-[#121212]">
+    // <section className="min-h-screen debug-screens bg-[#121212]">
+    <section className="min-h-screen bg-[#121212]">
       <div className="flex flex-col items-center justify-center h-screen gap-4 bg-slate-400 ">
         <div>
           <Link href="/">
