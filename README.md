@@ -6,7 +6,7 @@ create a simple E-commerce.
 
 ## Visit
 
-https://ecommerce-renatoallart.vercel.app/
+<a href="https://ecommerce-renatoallart.vercel.app/" target="_blank">E-commerce</a>
 
 ## Table of contentes
 
