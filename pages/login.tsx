@@ -15,6 +15,7 @@ export default function Login() {
         </div>
         {authArray.map((auth) => (
           <div
+            key={auth.label}
             className=" cursor-pointer flex items-center justify-evenly gap-4 border-black border-[1px] p-2 w-96 h-11 hover:shadow-md hover:shadow-white"
             onClick={(event) => {
               event.preventDefault();
