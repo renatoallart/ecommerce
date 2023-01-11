@@ -1,7 +1,12 @@
 # E-commerce
-
 An application in Nextjs using Typescript to
-create a simple E-commerce.
+create a simple E-commerce. 
+
+![ecommerce](https://user-images.githubusercontent.com/30847676/211910067-38f5fb26-e1ce-4fa2-a06e-9167d1b6f627.gif)
+
+## Visit
+
+https://ecommerce-renatoallart.vercel.app/
 
 ## Table of contentes
 
