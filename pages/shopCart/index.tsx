@@ -12,7 +12,6 @@ export default function ShopCart() {
   );
   if (cart.length === 0) return <EmptyCart />;
   return (
-    // <section className="flex flex-col items-center justify-center w-screen gap-2 md:items-start md:flex md:flex-row md:justify-center">
     <section className="flex flex-col items-center gap-4 p-2 md:flex md:flex-row md:justify-center md:items-start">
       <ShopCartList />
       <CartSummary />
