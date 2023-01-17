@@ -3,12 +3,21 @@ import { useLocalStore } from "../../hooks/useLocalStore";
 import { IProductCart } from "../../interfaces/productsCart";
 import { formatToCurrency } from "../../lib/utils/formatData";
 import { IUseShopCartStore, useShopCartStore } from "../../store/shopCartStore";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export function CartSummary() {
+  const { data: session } = useSession();
+  const router = useRouter();
   const cart = useLocalStore(
     useShopCartStore,
     (state: IUseShopCartStore) => state.cart
   );
+
+  function handleCheckout() {
+    if (!session) return router.push("/login");
+    return alert("successful order");
+  }
 
   // const cart = useShopCartStore((state: IUseShopCartStore) => state.cart)
 
@@ -46,7 +55,7 @@ export function CartSummary() {
       </div>
 
       <button
-        onClick={() => alert("Nice Buy")}
+        onClick={handleCheckout}
         className="w-full h-12 mt-2 text-xl font-bold bg-green-500"
       >
         Checkout ( {quantity} )
