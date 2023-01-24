@@ -16,11 +16,13 @@ export default function Home() {
       {/* // render the top 5 products  */}
       <Top5 productList={products} />
 
-      {/* // render all category and some products related */}
-      <ProductList products={products} />
+      <div className="flex flex-col">
+        {/* // render all category and some products related */}
+        <ProductList products={products} />
 
-      {/* // render the first product of each category */}
-      <AllCategories products={products} />
+        {/* // render the first product of each category */}
+        <AllCategories products={products} />
+      </div>
     </>
   );
 }

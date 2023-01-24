@@ -11,7 +11,9 @@ export function AllCategories({ products }: { products: IProduct[] }) {
   const router = useRouter();
   return (
     <section>
-      <h3 className="text-xl font-bold text-white uppercase m-">Categories</h3>
+      <h3 className="text-xl font-bold text-center text-white uppercase">
+        Categories
+      </h3>
       <div className="flex flex-wrap items-center justify-center gap-2 p-2">
         {categories.map((category) => {
           // get the first product of each category
