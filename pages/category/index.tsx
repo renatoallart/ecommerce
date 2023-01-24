@@ -20,7 +20,7 @@ export default function Category() {
   );
 }
 
-export async function GetStaticProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["categories", getProducts]);
 
