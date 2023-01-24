@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             </Layout>
           )}
         </Hydrate>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </SessionProvider>
   );

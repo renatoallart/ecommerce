@@ -60,9 +60,9 @@ export function Navbar() {
                     </Menu.Target>
                     <Menu.Dropdown>
                       <Menu.Label>User</Menu.Label>
-                      <Menu.Item icon={<Gear size={12} color="gray" />}>
+                      {/* <Menu.Item icon={<Gear size={12} color="gray" />}>
                         Settings
-                      </Menu.Item>
+                      </Menu.Item> */}
                       <Menu.Item
                         icon={<SignOut size={16} color="red" />}
                         onClick={(event) => {
