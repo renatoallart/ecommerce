@@ -8,7 +8,7 @@ create a simple E-commerce.
 
 <a href="https://ecommerce-renatoallart.vercel.app/" target="_blank">E-commerce</a>
 
-## Table of contentes
+## Table of contents
 
 - [Motivations](#motivations)
 - [Technologies](#technologies)
